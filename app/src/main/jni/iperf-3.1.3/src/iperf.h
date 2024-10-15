@@ -54,7 +54,7 @@
 #define INVOKE_TYPE_JNI 0
 /* 调用类型：可执行文件 调用 */
 #define INVOKE_TYPE_EXEC 1
-int invoke_flag;
+
 extern int invoke_flag;
 
 #define SAFE_EXIT(code)  do {\

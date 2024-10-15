@@ -51,7 +51,7 @@
 #include "units.h"
 #include "iperf_locale.h"
 #include "net.h"
-
+int invoke_flag = 0;
 
 static int run(struct iperf_test *test);
 
