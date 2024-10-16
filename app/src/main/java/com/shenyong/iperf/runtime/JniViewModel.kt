@@ -44,6 +44,7 @@ class JniViewModel : ViewModel(), Iperf3Callback {
         val config = Iperf3Config(addrStr, portStr.toInt(), parallelStr.toInt())
         config.bandwidth = bandwidthStr.toInt() * Iperf3Config.BANDWIDTH_1M
         config.isDownMode = isDown.value == true
+        config.duration = 60
 
         if (!::iperf3Client.isInitialized) {
             iperf3Client = Iperf3Client(this)

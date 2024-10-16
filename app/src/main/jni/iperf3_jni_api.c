@@ -20,11 +20,11 @@
 #endif
 #include <netinet/tcp.h>
 
-#include "iperf-3.1.3/src/iperf.h"
-#include "iperf-3.1.3/src/iperf_api.h"
-#include "iperf-3.1.3/src/units.h"
-#include "iperf-3.1.3/src/iperf_locale.h"
-#include "iperf-3.1.3/src/net.h"
+#include "iperf-3.17.1/src/iperf.h"
+#include "iperf-3.17.1/src/iperf_api.h"
+#include "iperf-3.17.1/src/units.h"
+#include "iperf-3.17.1/src/iperf_locale.h"
+#include "iperf-3.17.1/src/net.h"
 
 #include "AndroidLog.h"
 #include "iperf3_jni_api.h"

@@ -1,0 +1,3 @@
+/Users/qiaopeng/AndroidStudioProjects/iPerfDemo-runtime/app/src/main/jni/CMakeFiles/iperf3.dir
+/Users/qiaopeng/AndroidStudioProjects/iPerfDemo-runtime/app/src/main/jni/CMakeFiles/edit_cache.dir
+/Users/qiaopeng/AndroidStudioProjects/iPerfDemo-runtime/app/src/main/jni/CMakeFiles/rebuild_cache.dir

@@ -31,14 +31,14 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     // 在非调试 native 代码的情况下，可以直接用编译好的so库，不编译原生代码，编译速度会更快
-    externalNativeBuild {
+//    externalNativeBuild {
 //        ndkBuild {
 //            path file('src/main/jni/Android.mk')
 //        }
 //        cmake {
 //            path file('src/main/jni/CMakeLists.txt')
 //        }
-    }
+//    }
 }
 
 dependencies {

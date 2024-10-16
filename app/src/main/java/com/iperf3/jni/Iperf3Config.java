@@ -29,6 +29,8 @@ public class Iperf3Config {
     /** iperf执行时的并发连接数量，默认为1*/
     public int parallels = 1;
 
+    public int duration = 10;
+
     public Iperf3Config() {
     }
 
@@ -50,5 +52,11 @@ public class Iperf3Config {
     public void config(String mServerAddr, int mServerPort, int parallels, boolean isDownMode) {
         config(mServerAddr, mServerPort, parallels);
         this.isDownMode = isDownMode;
+    }
+
+    public void config(String mServerAddr, int mServerPort, int parallels, boolean isDownMode, int duration) {
+        config(mServerAddr, mServerPort, parallels);
+        this.isDownMode = isDownMode;
+        this.duration = duration;
     }
 }
