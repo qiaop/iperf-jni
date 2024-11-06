@@ -6,5 +6,5 @@ C_DEFINES = -Diperf3_EXPORTS
 
 C_INCLUDES = -I/Users/qiaopeng/AndroidStudioProjects/iPerfDemo-runtime/app/src/main/jni/iperf-3.17.1/src
 
-C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -pie -fPIE -fPIC -s -fPIC
+C_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -pie -fPIE -fPIC -s -fPIC
 

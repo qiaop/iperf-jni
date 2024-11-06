@@ -21,12 +21,12 @@ class JniViewModel : ViewModel(), Iperf3Callback {
         private const val TAG = "iperf3Jni"
     }
     
-    val addr = MutableLiveData<String>("iperf.biznetnetworks.com")
-    val port = MutableLiveData<String>("5203")
+    val addr = MutableLiveData<String>("192.168.3.28")
+    val port = MutableLiveData<String>("8888")
 //    val addr = MutableLiveData<String>("192.168.42.90")
 //    val port = MutableLiveData<String>("5201")
-    val parallel = MutableLiveData<String>("2")
-    val bandwidth = MutableLiveData<String>("1000")
+    val parallel = MutableLiveData<String>("1")
+    val bandwidth = MutableLiveData<String>("2")
     val isDown = MutableLiveData<Boolean>(true)
     val log = MutableLiveData<String>("test result")
     val bandwidthFloat = MutableLiveData<Float>(0f)
@@ -47,6 +47,7 @@ class JniViewModel : ViewModel(), Iperf3Callback {
         config.duration = 10
         config.isJson = true
         config.isUdp = true
+        config.interval = 1.0
 
         if (!::iperf3Client.isInitialized) {
             iperf3Client = Iperf3Client(this)
