@@ -51,6 +51,11 @@ void on_error_java(struct iperf_test *test, char *err_msg) {
     JNIEnv *env = test->jniCallback->env;
     call_java_method(test, test->jniCallback->errorMethod, 1, charToJstring(env, err_msg));
 }
+
+void on_json_java(struct iperf_test *test, char *json_msg) {
+    JNIEnv *env = test->jniCallback->env;
+    call_java_method(test, test->jniCallback->jsonMethod, 1, charToJstring(env, json_msg));
+}
 /******************************** Java 方法回调 end ********************************/
 
 /* 构造回调Java方法需要的参数 */
@@ -91,6 +96,7 @@ int construct_java_callback(JNIEnv *env, struct iperf_test *test, jobject callba
     jmethodID resultMethod      = (*env)->GetMethodID(env, class, "onResult",
                                                       "(FFLjava/lang/String;Ljava/lang/String;Z)V");
     jmethodID errorMethod       = (*env)->GetMethodID(env, class, "onError", "(Ljava/lang/String;)V");
+    jmethodID jsonMethod       = (*env)->GetMethodID(env, class, "onJson", "(Ljava/lang/String;)V");
     test->jniCallback->env = env;
     test->jniCallback->callbackObj = callback;
     test->jniCallback->connectingMethod = connectingMethod;
@@ -98,11 +104,13 @@ int construct_java_callback(JNIEnv *env, struct iperf_test *test, jobject callba
     test->jniCallback->intervalMethod = intervalMethod;
     test->jniCallback->resultMethod = resultMethod;
     test->jniCallback->errorMethod = errorMethod;
+    test->jniCallback->jsonMethod = jsonMethod;
     test->jniCallback->on_connecting = on_connecting_java;
     test->jniCallback->on_connected = on_connected_java;
     test->jniCallback->on_interval = on_interval_java;
     test->jniCallback->on_result = on_result_java;
     test->jniCallback->on_error = on_error_java;
+    test->jniCallback->on_json = on_json_java;
 
     return 0;
 }
@@ -164,13 +172,23 @@ int parse_java_config(JNIEnv *env, struct iperf_test *test, jobject config) {
     double interval = (*env)->GetDoubleField(env, config, interval_field);
     iperf_set_test_stats_interval(test, interval);
     iperf_set_test_reporter_interval(test, interval);
-    // -u，没有使用需要，先不支持udp
-//    jfieldID is_udp_field = (*env)->GetFieldID(env, class, "isUdp", "Z");
-//    jboolean is_udp = (*env)->GetBooleanField(env, config, is_udp_field);
-//    if (is_udp) {
-//        set_protocol(test, Pudp);
-//        iperf_set_test_blksize(test, DEFAULT_UDP_BLKSIZE);
-//    }
+    // -u udp
+    jfieldID is_udp_field = (*env)->GetFieldID(env, class, "isUdp", "Z");
+    jboolean is_udp = (*env)->GetBooleanField(env, config, is_udp_field);
+    if (is_udp) {
+        set_protocol(test, Pudp);
+        iperf_set_test_blksize(test, DEFAULT_UDP_BLKSIZE);
+    }
+
+    jfieldID is_json_field = (*env)->GetFieldID(env, class, "isJson", "Z");
+    jboolean is_json = (*env)->GetBooleanField(env, config, is_json_field);
+    if (is_json) {
+        iperf_set_test_json_output(test, 1);
+    }
+    //duration
+    jfieldID duration_field = (*env)->GetFieldID(env, class, "duration", "I");
+    jint duration = (*env)->GetIntField(env, config, duration_field);
+    iperf_set_test_duration(test, duration);
 
     return 0;
 }

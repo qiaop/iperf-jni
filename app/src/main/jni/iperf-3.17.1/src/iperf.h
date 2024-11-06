@@ -295,12 +295,16 @@ struct jni_callback {
     /* descriptor: (Ljava/lang/String;I)V */
     jmethodID errorMethod;
 
+    /* descriptor: (Ljava/lang/String;I)V */
+    jmethodID jsonMethod;
+
     /* callback functions */
     void (*on_connecting)(struct iperf_test *, char *, int);
     void (*on_connected)(struct iperf_test *, char[], int, char[], int);
     void (*on_interval)(struct iperf_test *, float, float, char[], char[]);
     void (*on_result)(struct iperf_test *, float, float, char[], char[]);
     void (*on_error)(struct iperf_test *, char *);
+    void (*on_json)(struct iperf_test *, char *);
 };
 enum iperf_mode {
 	SENDER = 1,

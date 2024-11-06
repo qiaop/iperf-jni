@@ -53,7 +53,7 @@ JNIEXPORT void JNICALL Java_com_iperf3_jni_Iperf3Client_exec(
         char *err_str = iperf_strerror(i_errno);
         // jni callback
         test->jniCallback->on_error(test, err_str);
-        iperf_errexit(test, "error - %s", err_str);
+//        iperf_errexit(test, "error - %s", err_str);
     }
 
     iperf_free_test(test);
@@ -136,7 +136,7 @@ run(struct iperf_test *test)
                 char *err_str = iperf_strerror(i_errno);
                 // jni callback
                 test->jniCallback->on_error(test, err_str);
-                iperf_errexit(test, "error - %s", err_str);
+//                iperf_errexit(test, "error - %s", err_str);
             }
             break;
         default:

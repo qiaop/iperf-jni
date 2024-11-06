@@ -5104,6 +5104,9 @@ iperf_json_finish(struct iperf_test *test)
             if (test->json_output_string == NULL) {
                 return -1;
             }
+            if (test->jniCallback){
+                test->jniCallback->on_json(test, test->json_output_string);
+            }
             if (pthread_mutex_lock(&(test->print_mutex)) != 0) {
                 perror("iperf_json_finish: pthread_mutex_lock");
             }
