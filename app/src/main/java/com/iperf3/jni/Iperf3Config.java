@@ -31,6 +31,10 @@ public class Iperf3Config {
 
     public int duration = 10;
 
+    public boolean isJson;
+
+    public boolean isUdp;
+
     public Iperf3Config() {
     }
 

@@ -44,7 +44,9 @@ class JniViewModel : ViewModel(), Iperf3Callback {
         val config = Iperf3Config(addrStr, portStr.toInt(), parallelStr.toInt())
         config.bandwidth = bandwidthStr.toInt() * Iperf3Config.BANDWIDTH_1M
         config.isDownMode = isDown.value == true
-        config.duration = 60
+        config.duration = 10
+        config.isJson = true
+        config.isUdp = true
 
         if (!::iperf3Client.isInitialized) {
             iperf3Client = Iperf3Client(this)
@@ -114,6 +116,10 @@ class JniViewModel : ViewModel(), Iperf3Callback {
     override fun onError(errMsg: String?) {
         Log.d(TAG, "onError: $errMsg")
         postLog("onError: $errMsg")
+    }
+
+    override fun onJson(jsonStr: String?) {
+        Log.d(TAG, "onJson: $jsonStr")
     }
     /**************** CmdCallback end ****************/
 }

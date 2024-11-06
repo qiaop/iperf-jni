@@ -138,5 +138,9 @@ class CmdViewModel : ViewModel(), CmdCallback {
     override fun onError(errMsg: String?) {
         Log.d(TAG, "onError: $errMsg")
     }
+
+    override fun onJson(jsonStr: String?) {
+        Log.d(TAG, "onJson: $jsonStr")
+    }
     /**************** CmdCallback end ****************/
 }

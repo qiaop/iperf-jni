@@ -15,4 +15,6 @@ public interface Iperf3Callback {
     void onResult(float timeStart, float timeEnd, String sendBytes, String bandWidth, boolean isDown);
 
     void onError(String errMsg);
+
+    void onJson(String jsonStr);
 }
